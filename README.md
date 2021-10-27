@@ -10,7 +10,7 @@ This is a Pokedex created using the [PokéAPI](https://pokeapi.co/) with vanilla
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://rowanconnaughton.github.io/Frontend-Mentor-3-column-preview-card-component-solution/)
+[Live Link](https://rowanconnaughton.github.io/PokeDex-VanillaJS/)
 
 
 
