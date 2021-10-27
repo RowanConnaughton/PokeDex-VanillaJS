@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>PokeDex</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <section class="pokemon-card hide">
+        <div class="pokemon-card__header">
+          <h1 class="pokemon-name"></h1>
+          <p class="pokemon-id"></p>
+        </div>
+
+        <div class="pokemon-card__body">
+          <img src="" alt="pokemon image" class="pokemon-card__image" />
+
+          <div class="pokemon-card__description">
+            <h2 class="pokemon-card__title">Description</h2>
+            <p class="pokemon-desc-one"></p>
+            <p class="pokemon-desc-two"></p>
+          </div>
+
+          <div class="pokemon-card__types-size">
+            <div class="pokemon-card__types">
+              <p class="pokemon-type-one"></p>
+              <p class="pokemon-type-two"></p>
+            </div>
+
+            <div class="pokemon-card__size">
+              <p>Weight: <span class="pokemon-weight"></span>kg</p>
+              <p>Height: <span class="pokemon-hieght"></span>m</p>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="pokemon-card__title">Stats</h3>
+
+            <ul class="pokemon-card__stats">
+              <li>
+                <p class="pokemon-hp"></p>
+                <p>HP</p>
+              </li>
+              <li>
+                <p class="pokemon-attack"></p>
+                <p>Attack</p>
+              </li>
+              <li>
+                <p class="pokemon-defense"></p>
+                <p>Defense</p>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="pokemon-card__title">Moves</h3>
+
+            <ul class="pokemon-card__moves">
+              <li>
+                <p class="pokemon-move-one"></p>
+              </li>
+              <li>
+                <p class="pokemon-move-two"></p>
+              </li>
+              <li>
+                <p class="pokemon-move-three"></p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="pokemon-list">
+        <h1>Pokemon List</h1>
+        <div class="pokemon-list-items">
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+          <div class="list-item"></div>
+        </div>
+        <div class="pokemon-list__buttons">
+          <button class="btn previous">Previous</button>
+          <button class="btn next">Next</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
