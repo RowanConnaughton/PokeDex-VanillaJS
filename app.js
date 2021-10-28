@@ -61,10 +61,12 @@ const resetCard = () => {
 
 //get pokemon list
 const fetchPokeList = async (url) => {
- await fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      const { results, previous, next } = data;
+const pokemonListResponse =  await fetch(url);
+const pokemonList =  await pokemonListResponse.json();
+
+
+    
+      const { results, previous, next } = pokemonList;
 
       prevUrl = previous;
       nextUrl = next;
@@ -83,7 +85,7 @@ const fetchPokeList = async (url) => {
           pokeListItem.textContent = "";
         }
       }
-    });
+    
 };
 
 //check for pokemon move data
@@ -101,13 +103,14 @@ const checkMove = (move, moveElement) => {
 //get data for details for pokemon
 
 const fetchPokeDetails = async (id) => {
- await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-    .then((res) => res.json())
-    .then((data) => {
+ const detailsResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+
+ const details = await detailsResponse.json();
+
       resetCard();
 
-      pokemonTypeOne.textContent = capitalize(data["types"][0]["type"]["name"]);
-      const dataSecondType = data["types"][1];
+      pokemonTypeOne.textContent = capitalize(details["types"][0]["type"]["name"]);
+      const dataSecondType = details["types"][1];
       if (dataSecondType) {
         pokemonTypeTwo.classList.remove("hide");
         pokemonTypeTwo.textContent = capitalize(dataSecondType["type"]["name"]);
@@ -116,49 +119,50 @@ const fetchPokeDetails = async (id) => {
         pokemonTypeTwo.textContent = "";
       }
 
-      const dataFirstMove = data["moves"][0];
-      const dataSecondMove = data["moves"][1];
-      const dataThirdMove = data["moves"][2];
+      const dataFirstMove = details["moves"][0];
+      const dataSecondMove = details["moves"][1];
+      const dataThirdMove = details["moves"][2];
 
       checkMove(dataFirstMove, pokemonMoveOne);
       checkMove(dataSecondMove, pokemonMoveTwo);
       checkMove(dataThirdMove, pokemonMoveThree);
 
-      PokemonCard.classList.add(data["types"][0]["type"]["name"]);
+      PokemonCard.classList.add(details["types"][0]["type"]["name"]);
 
-      pokemonName.textContent = capitalize(data["name"]);
-      pokemonId.textContent = "#" + data["id"].toString().padStart(3, "0");
+      pokemonName.textContent = capitalize(details["name"]);
+      pokemonId.textContent = "#" + details["id"].toString().padStart(3, "0");
 
-      const strWeight = JSON.stringify(data["weight"]);
+      const strWeight = JSON.stringify(details["weight"]);
       let strWeightRes = strWeight.slice(0, -1) + "." + strWeight.slice(-1);
       pokemonWeight.textContent = strWeightRes;
 
-      const strHeight = JSON.stringify(data["height"]);
+      const strHeight = JSON.stringify(details["height"]);
       let strHeightRes = strHeight.slice(0, -1) + "." + strHeight.slice(-1);
       pokemonHeight.textContent = strHeightRes;
 
-      pokemonHp.textContent = data["stats"][0]["base_stat"];
-      pokemonAttack.textContent = data["stats"][1]["base_stat"];
-      pokemonDefense.textContent = data["stats"][2]["base_stat"];
+      pokemonHp.textContent = details["stats"][0]["base_stat"];
+      pokemonAttack.textContent = details["stats"][1]["base_stat"];
+      pokemonDefense.textContent = details["stats"][2]["base_stat"];
 
       const dataImage =
-        data["sprites"]["other"]["dream_world"]["front_default"];
-      const dataSprite = data["sprites"]["front_default"];
+        details["sprites"]["other"]["dream_world"]["front_default"];
+      const dataSprite = details["sprites"]["front_default"];
       pokeFrontImage.src = dataImage ? dataImage : dataSprite;
-    });
+    
   //fetch description
- await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}/`)
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else if (res.status === 404) {
-        pokemonDescriptionOne.textContent = "No Description";
-        pokemonDescriptionTwo.textContent = "";
-        return Promise.reject("error 404");
-      }
-    })
-    .then((data) => {
-      const flavourTextEntries = data["flavor_text_entries"];
+ const descriptionResponse = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}/`)
+
+
+if(descriptionResponse.status === 404) {
+  pokemonDescriptionOne.textContent = "No Description";
+  pokemonDescriptionTwo.textContent = "";
+  return Promise.reject("error 404");
+}
+
+ const description = await descriptionResponse.json();
+ 
+
+  const flavourTextEntries = description["flavor_text_entries"];
 
       for (const flavourText of flavourTextEntries) {
         if (flavourText["language"]["name"] === "en") {
@@ -172,7 +176,8 @@ const fetchPokeDetails = async (id) => {
           break;
         }
       }
-    });
+
+
 };
 
 //fetch next pokemon list on click
@@ -229,4 +234,4 @@ for (const pokeListItem of pokeListItems) {
 }
 
 //init app
-fetchPokeList("https://pokeapi.co/api/v2/pokemon?offset=0&limit=40");
+fetchPokeList("https://pokeapi.co/api/v2/pokemon?offset=0&limit=40")
